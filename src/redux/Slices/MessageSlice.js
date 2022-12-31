@@ -6,7 +6,7 @@ export const createNewMessageAsync = createAsyncThunk(
   async (payload) => {
     try {
       const response = await Axios.post(
-        `http://localhost:5000/api/message/${payload.chat}`, payload, {
+        `https://chat-web-vz9a.onrender.com/api/message/${payload.chat}`, payload, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -23,7 +23,7 @@ export const createNewMessageAsync = createAsyncThunk(
 export const getAllMessagesAsync = createAsyncThunk(
   "message/getAllMessagesAsync",
   async (chatId) => {
-    const data = await Axios.get(`http://localhost:5000/api/message/${chatId}`, {
+    const data = await Axios.get(`https://chat-web-vz9a.onrender.com/api/message/${chatId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

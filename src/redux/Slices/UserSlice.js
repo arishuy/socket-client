@@ -7,7 +7,7 @@ export const addNewFriendAsync = createAsyncThunk(
   async (payload) => {
     try {
       const response = await Axios.post(
-        `http://localhost:5000/api/user/addFriend`,
+        `https://chat-web-vz9a.onrender.com/api/user/addFriend`,
         payload,
         {
           headers: {
@@ -28,7 +28,7 @@ export const acceptFriendAsync = createAsyncThunk(
   async (payload) => {
     try {
       const response = await Axios.post(
-        `http://localhost:5000/api/user/acceptFriend`,
+        `https://chat-web-vz9a.onrender.com/api/user/acceptFriend`,
         payload,
         {
           headers: {
@@ -48,7 +48,7 @@ export const getUserByIdAsync = createAsyncThunk(
   "user/getUserByIdAsync",
   async (userId) => {
     console.log("fetching data");
-    const data = await Axios.get(`http://localhost:5000/api/user/${userId}`, {
+    const data = await Axios.get(`https://chat-web-vz9a.onrender.com/api/user/${userId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -62,7 +62,7 @@ export const FindUserByNameAsync = createAsyncThunk(
   async (payload) => {
     try {
       const response = await Axios.post(
-        `http://localhost:5000/api/user/findUser`,
+        `https://chat-web-vz9a.onrender.com/api/user/findUser`,
         payload,
         {
           headers: {

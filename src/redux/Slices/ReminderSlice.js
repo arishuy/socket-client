@@ -5,7 +5,7 @@ export const getAllRemindersAsync = createAsyncThunk(
     "reminder/getAllRemindersAsync",
     async () => {
         console.log("get all reminders");
-        const data = await Axios.get(`http://localhost:5000/api/reminder/getallreminders`, {
+        const data = await Axios.get(`https://chat-web-vz9a.onrender.com/api/reminder/getallreminders`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -18,7 +18,7 @@ export const createNewReminderAsync = createAsyncThunk(
     "reminder/createNewReminderAsync",
     async (payload) => {
         const response = await Axios.post(
-            `http://localhost:5000/api/reminder/addreminder`,
+            `https://chat-web-vz9a.onrender.com/api/reminder/addreminder`,
             payload,
             {
                 headers: {
@@ -35,7 +35,7 @@ export const deleteReminderAsync = createAsyncThunk(
     "reminder/deleteReminderAsync",
     async (id) => {
         const response = await Axios.delete(
-            `http://localhost:5000/api/reminder/deletereminder/${id}`,
+            `https://chat-web-vz9a.onrender.com/api/reminder/deletereminder/${id}`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -51,7 +51,7 @@ export const updateReminderAsync = createAsyncThunk(
     "reminder/updateReminderAsync",
     async (payload) => {
         const response = await Axios.put(
-            `http://localhost:5000/api/reminder/updatereminder/${payload.id}`,
+            `https://chat-web-vz9a.onrender.com/api/reminder/updatereminder/${payload.id}`,
             payload,
             {
                 headers: {

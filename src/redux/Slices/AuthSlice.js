@@ -5,7 +5,7 @@ export const loginAsync = createAsyncThunk(
   "auth/loginAsync",
   async (payload) => {
     const response = await Axios.post(
-      "http://localhost:5000/api/auth/login",
+      "https://chat-web-vz9a.onrender.com/api/auth/login",
       payload
     );
     localStorage.setItem("token", response.data.token);

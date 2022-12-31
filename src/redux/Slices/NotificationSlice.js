@@ -4,7 +4,7 @@ export const getAllNotificationsAsync = createAsyncThunk(
   "notifications/getAllNotificationsAsync",
   async () => {
     console.log("fetching data");
-    const data = await Axios.get("http://localhost:5000/api/notification/tome", {
+    const data = await Axios.get("https://chat-web-vz9a.onrender.com/api/notification/tome", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -17,7 +17,7 @@ export const createNewNotificationAsync = createAsyncThunk(
   async (payload) => {
     try {
       const response = await Axios.post(
-        `http://localhost:5000/api/notification`,
+        `https://chat-web-vz9a.onrender.com/api/notification`,
         payload,
         {
           headers: {

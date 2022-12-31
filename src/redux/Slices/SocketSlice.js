@@ -6,7 +6,7 @@ const SocketSlice = createSlice({
   initialState: {},
   reducers: {
     getSocketStatus: (state,action) => {
-      const socket = io("http://localhost:5000", { transports: ['websocket', 'polling', 'flashsocket'] });
+      const socket = io("https://chat-web-vz9a.onrender.com", { transports: ['websocket', 'polling', 'flashsocket'] });
       socket.emit("addUser",action.payload.userId);
       state = {socket};
       console.log(state);

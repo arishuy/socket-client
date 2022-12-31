@@ -4,7 +4,7 @@ export const getAllChatsAsync = createAsyncThunk(
   "chats/getAllchatAsync",
   async () => {
     console.log("fetching data");
-    const data = await Axios.get("http://localhost:5000/api/chat", {
+    const data = await Axios.get("https://chat-web-vz9a.onrender.com/api/chat", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -15,7 +15,7 @@ export const getAllChatsAsync = createAsyncThunk(
   export const getChatID = createAsyncThunk(
     "chats/getChatID",
     async (userID1, userID2) => {
-        const data = await Axios.get(`http://localhost:5000/api/chat`,{
+        const data = await Axios.get(`https://chat-web-vz9a.onrender.com/api/chat`,{
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
