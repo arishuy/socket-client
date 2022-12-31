@@ -40,7 +40,6 @@ export const getAllChatsAsync = createAsyncThunk(
   extraReducers: {
     [getAllChatsAsync.fulfilled]: (state, action) => {
       state = action.payload.data.data;
-      console.log(state);
        return action.payload.data.data;
     },  
   },

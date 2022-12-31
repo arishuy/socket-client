@@ -36,6 +36,7 @@ const Contact = () => {
         chatId={chat._id}
         name={username===chat.users[0].name?chat.users[1].name:chat.users[0].name}
         latestMessage={chat.latestMessage?.content}
+        receiverId={username===chat.users[0].name?chat.users[1]._id:chat.users[0]._id}
         time={timeSince(new Date (chat.latestMessage?.createdAt))}
       />
     );

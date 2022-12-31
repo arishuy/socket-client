@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Button from "./Button";
 import "../scss/components/Chatwindow.css";
 import Messcard from "./Card/Messcard";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,15 +11,12 @@ import { useParams } from "react-router";
 import Contact from "./Contact";
 import { addLatestMessage } from "../redux/Slices/ChatSlice";
 import { timeSince } from "../../src/utils/changeDate";
-import { Link } from "react-router-dom";
 
-const Chatwindow = ({ user, reloadMessages, socket }) => {
-  //const allMessages = [...reloadMessages.messages];
+const Chatwindow = ({ user, reloadMessages,receiverId, socket }) => {
   const allMessages = useSelector((state) => state.message.messages);
   const dispatch = useDispatch();
   const chatId = useParams().id;
   const [newNotification, setNewNotification] = React.useState({});
-  const [receiverId, setReceiverId] = React.useState("");
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
   const [receiverName, setReceiverName] = useState("");
@@ -108,9 +104,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     const mes = allMessages?.find(
       (mes) => mes.sender !== user.user._id
     );
-    console.log(mes);
-    const receiverId = mes?.sender;
-    setReceiverId(receiverId);
     dispatch(getUserByIdAsync(receiverId)).then(res => {
       setReceiverName(res.payload.data.data.user.name);
     })
