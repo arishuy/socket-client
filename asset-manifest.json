@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/socket-client/static/css/main.169bbac3.css",
+    "main.js": "/socket-client/static/js/main.e1587714.js",
+    "static/media/Inter-Regular.ttf": "/socket-client/static/media/Inter-Regular.e89cb19905e7db5591b0.ttf",
+    "static/media/DancingScript-VariableFont_wght.ttf": "/socket-client/static/media/DancingScript-VariableFont_wght.3e7e73f4e34e4945f363.ttf",
+    "index.html": "/socket-client/index.html",
+    "main.169bbac3.css.map": "/socket-client/static/css/main.169bbac3.css.map",
+    "main.e1587714.js.map": "/socket-client/static/js/main.e1587714.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.169bbac3.css",
+    "static/js/main.e1587714.js"
+  ]
+}
