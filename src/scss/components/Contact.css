@@ -1,0 +1,178 @@
+@font-face {
+  font-family: "Dancing Script";
+  src: url("../../font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
+}
+.contact-body {
+  display: flex;
+  width: calc(100vw - 71vw);
+  height: 92vh;
+  flex-direction: column;
+}
+.contact-content {
+  display: flex;
+  height: 20vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.contact-regular {
+  width: 70vw;
+  padding-left: 3.125rem;
+}
+.contact-regular h1 {
+  font-family: "Dancing Script";
+}
+.contact-avatar {
+
+  display: flex;
+}
+.contact-avatar {
+  /* Rounded border */
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+}
+
+.avatar__image {
+  /* Rounded border */
+  border-radius: 50%;
+  margin-top: -10px;
+  /* Take full size */
+  height: 100%;
+  width: 100%;
+  padding-right: 0.9375rem;
+}
+.search {
+  padding-top: 1.25rem;
+  /* margin: 0.625rem 5% 0.625rem 0.625rem; */
+  margin-left: 1rem;
+  float: right;
+  width: 100%;
+  /* //height: 30vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-content i {
+  position: absolute;
+  padding: 0.45rem 0 0 0.625rem;
+  font-size: 1.125rem;
+}
+
+.search-content input {
+  width: 85%;
+  padding-left: 2.5rem;
+  font-size: 1.5625rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border: none;
+  background-color: rgba(217, 217, 217, 1);
+}
+.search-content input:focus {
+  border: none;
+  outline: none;
+}
+.search-content input::placeholder {
+  font-style: italic;
+  font-size: 1.125rem;
+  color: rgb(67, 67, 67);
+}
+.contact-message {
+  height: calc(92vh - 23vh);
+  padding-left: 2rem;
+  padding-top: 5rem;
+  padding-right: 1.25rem;
+  overflow: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.message-content {
+  margin-top: 1.25rem;
+  position: relative;
+  width: 100%;
+  height: 5.25rem;
+  background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+  box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.625rem;
+  display: flex;
+  cursor: pointer;
+  /* border-bottom: 1px solid  rgba(121, 217, 252, 0.54); */
+}
+.message-content .kimochi {
+  position: absolute;
+  left: 0.625rem;
+  top: 1.25rem;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  /* margin: 20px 25px 50px -500px; */
+}
+.message-content .message-text {
+  position: absolute;
+  left: 5em;
+  text-align: left;
+  font-size: 1.25em;
+  color: black;
+  font-weight: bold;
+}
+.message-content h1 {
+  margin-top: 0.5em;
+  grid-column: 2;
+  grid-row: 1;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.75em;
+  line-height: 1.3em;
+  color: black;
+}
+.message-content p {
+  padding-top: 0.5em;
+  grid-column: 2;
+  grid-row: 2;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.6em;
+  line-height: 1.8em;
+  color: black;
+  margin-top: -0.9375em;
+}
+
+.message-content-h5{
+  font-family: "Inter";
+  font-style: normal;
+  font-size: 3px;
+  line-height: 1.8em;
+  color: black;
+  margin-top: -0.9375em;
+  position: absolute;
+  right: 0.9375em;
+  bottom: 0.9375em;
+}
+
+.message-content h3 {
+  font-style: italic;
+  font-size: 10px;
+  color: gray;
+  font-weight: none;
+  position: absolute;
+  right: 0.9375em;
+}
+.contact-message::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.contact-message::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.contact-message::-webkit-scrollbar-thumb {
+  background: rgba(35, 194, 119, 0.577);
+}
+.contact-message::-webkit-scrollbar-thumb:hover {
+  background: rgb(16, 160, 179);
+}

@@ -1,0 +1,64 @@
+:root {
+  font-size: 16px;
+  }
+@font-face {
+  font-family: "Inter";
+  src: url("../src/font/Inter/static/Inter-Regular.ttf");
+}
+html,body {
+  font-family: "Inter";
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      360deg,
+      #f5b895 0%,
+      rgba(245, 184, 149, 0.901042) 0.01%,
+      rgba(245, 184, 149, 0) 100%
+    ),
+    linear-gradient(180deg, #71f5f2 0%, rgba(113, 245, 242, 0) 100%);
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
+col-full {
+  width: 100%;
+}
+col-half {
+  width: 50%;
+}
+col-third {
+  width: 33.33%;
+}
+@media screen and (max-width: 412px) {
+  .html {
+    width: 412px;
+  }
+  .sidebar {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    height: 4%;
+    background: white;
+  }
+  .sidebar .icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about_us {
+    display: none;
+  }
+  .b1 {
+    display: none;
+  }
+  .navigation {
+    display: none;
+  }
+  .chat-profile {
+    display: none;
+  }
+}

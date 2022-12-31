@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+.notification{
+    color: black;
+    width: fit-content;
+    height:18.5rem;
+    position: relative;
+    left: 7rem;
+    display: block;
+     z-index: 1;
+    text-decoration: none;
+}
+.notification-bell{
+    margin-top: 8.25rem;
+    width: 0;
+}
+.notification-bell:hover{
+    cursor: pointer;
+}
+.notification i {
+    color: white;
+    align-self: center;
+}
+.notification-circle {
+    position: relative;
+    left: 0.7rem;
+    background-color: red;
+    font-size:xx-small;
+    font-weight: 500;
+    border-radius: 50%;
+    text-align: center;
+    width: 0.65rem;
+    height: 0.65rem;
+    color: white;
+}
+
+.notification-list{
+    position: absolute;
+    right: -1.5em;
+    top: 11em;
+    border-radius: 0.5em;
+}
+  

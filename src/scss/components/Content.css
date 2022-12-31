@@ -1,0 +1,175 @@
+@font-face {
+  font-family: "Dancing Script";
+  src: url("../../font/Dancing_Script/DancingScript-VariableFont_wght.ttf");
+}
+.content {
+  float: right;
+  display: flex;
+  margin-left: 6.25rem;
+  width: 95%;
+  height: 92vh;
+}
+.content .rank {
+  padding-top: 1.25rem;
+  width: 40vw;
+ 
+}
+.content .rank h1 {
+  font-family: "Dancing Script";
+}
+.content .rank .rank-content {
+  margin-top: 1.25rem;
+  position: relative;
+  width: 40vw;
+  height: 7rem;
+  background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.625rem;
+  display: flex;
+}
+
+.content .rank .rank-content .kimochi {
+  border-radius: 50%;
+  width: 4.625rem;
+  /* height: 5.625rem; */
+  text-align: center;
+  color: black;
+  margin: 1.25rem 0rem 3.125rem 1.875rem;
+}
+.content .rank .rank-content .rank-name {
+  text-align: left;
+    font-size: 1.25rem;
+    color: black;
+    font-weight: bold;
+    padding-left: 2rem;
+}
+.content .rank .rank-content h1 {
+  margin-top: 0.9375rem;
+  grid-column: 2;
+  grid-row: 1;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  color: black;
+}
+.content .rank .rank-content p {
+  grid-column: 2;
+  grid-row: 2;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.8em;
+  /* line-height: */
+  color: black;
+  margin-top: -0.9375em;
+}
+.rank-amount-mess  {
+  margin-top: 0.9375rem;
+  max-width: 20em !important;
+  max-height: 2em !important;
+}
+.reminder1 {
+  width: 43vw;
+  height: 12.5rem;
+  float: right;
+  margin-top: 3.125rem;
+}
+.reminder1 .message {
+  margin-top: 0.9375rem;
+  margin-left: 6.25rem;
+  position: relative;
+  width: 31.25rem;
+  height: 6.25rem;
+  background: linear-gradient(
+      180deg,
+      rgba(121, 217, 252, 0.54) 0%,
+      rgba(121, 217, 252, 0) 100%
+    ),
+    #7ff0cb;
+  box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.625rem;
+  padding: 0.625rem;
+}
+.reminder1 .message i {
+  width: 31.25rem;
+  text-align: center;
+  font-size: 1.25rem;
+  color: black;
+  font-weight: bold;
+  padding-top: 0.625/2rem;
+}
+.reminder1 .header-remind {
+  margin-left: 6.25rem;
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 2.1875rem;
+  color: black;
+}
+.reminder1 .message h1 {
+  width: 17.75rem;
+  height: 1.25rem;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 2.4375rem;
+  margin-top: 0rem;
+  margin-left: 0.625rem;
+  color: #000000;
+}
+.reminder1 .message p {
+  width: 27.3125rem;
+  height: 1.6875rem;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  color: #000000;
+  margin-left: 0.625rem;
+}
+@media screen and (max-width: 412px) {
+  .content .message .message-content {
+    width: 20rem ;
+    height: 5rem;
+    margin-left: 0;
+    display: flex;
+  }
+  .content .message .message-content .kimochi {
+    width: 3rem;
+    height: 3rem;
+    margin: -0.2rem 0px 0.5rem 0.5rem;
+  }
+  .content .message {
+    padding: 0;
+    margin: 0;
+  }
+  .content {
+    margin-left: 2em;
+  }
+  .reminder1 {
+    display: none;
+  }
+  .content .message-text {
+  }
+  .content .message .message-content h1 {
+    font-size: 1rem;
+  }  
+  .content .message .message-content p {
+    font-size: 0.8rem;
+    width: fit-content;
+    height: fit-content;
+
+  }
+
+
+}
