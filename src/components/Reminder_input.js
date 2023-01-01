@@ -18,7 +18,6 @@ const Reminder_input = () => {
         time,
         date,
       };
-      console.log(reminderData);
     dispatch(createNewReminderAsync(reminderData));
     dispatch1(getAllRemindersAsync());
     }

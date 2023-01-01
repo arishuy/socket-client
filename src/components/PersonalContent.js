@@ -29,7 +29,6 @@ const PersonalContent = () => {
      });
    }, [dispatch]);
     const myID = useSelector((state) => state.auth[0].user._id);
-    console.log(person);
     const r1 = person.friends?.find(friend => friend._id === myID)?true:false;
     useEffect(() => {
       setIsFriend(r1);
@@ -37,7 +36,6 @@ const PersonalContent = () => {
     const handleMessage = () => {
         dispatch(getChatID(myID,person._id)).then((res) => {
           navigate(`/Message_ChatWindow/${res.payload.data.data.chats[0]._id}`);
-          // console.log(res.payload.data.data.chats[0]._id);
         });
     };
     const personName = person.name;

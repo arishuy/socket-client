@@ -9,7 +9,6 @@ const SocketSlice = createSlice({
       const socket = io("https://chat-web-vz9a.onrender.com", { transports: ['websocket', 'polling', 'flashsocket'] });
       socket.emit("addUser",action.payload.userId);
       state = {socket};
-      console.log(state);
       return state;
     },
   },

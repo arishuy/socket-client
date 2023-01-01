@@ -11,8 +11,6 @@ import {
 
 const Reminder = () => {
   const reminders = useSelector((state) => state.reminder.reminders);
-  console.log(reminders);
-  //const [reminders, setReminders] = React.useState(remindersfromRedux);
   const dispatch = useDispatch();
   const dispatch2 = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(false);
@@ -58,7 +56,6 @@ const Reminder = () => {
         <div className="reminder-2" onClick={handleClickD}>
         <Reminderoption title="Delete Reminders" icon="fa-solid fa-trash" />
         </div>
-        <Reminderoption title="Edit Reminders" icon="fa-solid fa-edit" />
       </div>
       <div className="reminder-content2 col-half">
         <div className="reminder-header">

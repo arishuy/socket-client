@@ -16,6 +16,7 @@ const LoginForm = () => {
   const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
   const dispatchAllchats = useDispatch();
+  const [error, setError] = React.useState("");
   const login = {
     email: username,
     password: password,
@@ -24,10 +25,13 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginAsync(login)).then(auth => {
-      console.log(auth);
+      if (auth.payload === undefined) {
+        setError("Invalid username or password!");
+      }
       if (auth.payload.status === "success") {
         dispatch(getSocketStatus({userId: auth.payload.data.user._id }));
         dispatchAllchats(getAllChatsAsync()).then(() => {
+          localStorage.setItem("token", auth.payload.token);
           navigate("/dashboard");
         });
         // auth_context.login(auth.payload.token);
@@ -70,6 +74,7 @@ const LoginForm = () => {
               />
               <label>Password</label>
             </div>
+            <p style={{ color: "red",textAlign: "center" }}>{error}</p>
             <a onClick={handleSubmit}>
               <span></span>
               <span></span>

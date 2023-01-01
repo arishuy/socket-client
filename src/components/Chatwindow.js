@@ -12,10 +12,11 @@ import Contact from "./Contact";
 import { addLatestMessage } from "../redux/Slices/ChatSlice";
 import { timeSince } from "../../src/utils/changeDate";
 
-const Chatwindow = ({ user, reloadMessages,receiverId, socket }) => {
+const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = useSelector((state) => state.message.messages);
   const dispatch = useDispatch();
   const chatId = useParams().id;
+  const [receiverId, setReceiverId] = useState("");
   const [newNotification, setNewNotification] = React.useState({});
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
@@ -68,7 +69,6 @@ const Chatwindow = ({ user, reloadMessages,receiverId, socket }) => {
       dispatch(
         createNewNotificationAsync(notifData)
       ).then((res) => {
-        console.log("add notification");
        });
       setCurrentMessage("");
     }
@@ -104,12 +104,11 @@ const Chatwindow = ({ user, reloadMessages,receiverId, socket }) => {
     const mes = allMessages?.find(
       (mes) => mes.sender !== user.user._id
     );
+    setReceiverId(mes?.sender);
     dispatch(getUserByIdAsync(receiverId)).then(res => {
       setReceiverName(res.payload.data.data.user.name);
     })
   },[chatId]);
-  console.log(receiverId);
-  console.log(socket);
 
   return (
     <div className="chat">

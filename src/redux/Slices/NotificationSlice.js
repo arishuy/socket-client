@@ -3,7 +3,6 @@ import Axios from "axios";
 export const getAllNotificationsAsync = createAsyncThunk(
   "notifications/getAllNotificationsAsync",
   async () => {
-    console.log("fetching data");
     const data = await Axios.get("https://chat-web-vz9a.onrender.com/api/notification/tome", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -26,10 +25,8 @@ export const createNewNotificationAsync = createAsyncThunk(
         }
       );
       const message = response.data;
-      console.log(message);
       return message;
     } catch (error) {
-      console.log(error);
     }
   }
 );
@@ -39,12 +36,9 @@ const NotificationSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getAllNotificationsAsync.fulfilled]: (state, action) => {
-        console.log("fetching data successfully");
-        console.log(action.payload.data.data);
       return action.payload.data.data;
       },
       [createNewNotificationAsync.fulfilled]: (state, action) => { 
-          console.log("adding data successfully");
       }
   },
 });

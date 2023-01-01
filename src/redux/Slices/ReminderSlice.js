@@ -4,7 +4,6 @@ import Axios from "axios";
 export const getAllRemindersAsync = createAsyncThunk(
     "reminder/getAllRemindersAsync",
     async () => {
-        console.log("get all reminders");
         const data = await Axios.get(`https://chat-web-vz9a.onrender.com/api/reminder/getallreminders`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -71,7 +70,6 @@ const ReminderSlice = createSlice({
     extraReducers: {
         [getAllRemindersAsync.fulfilled]: (state, action) => {
             state = action.payload.data.data;
-            console.log(state);
             return state;
         }
     },

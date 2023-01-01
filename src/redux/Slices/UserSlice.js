@@ -18,7 +18,6 @@ export const addNewFriendAsync = createAsyncThunk(
       const message = response.data;
       return message;
     } catch (error) {
-      console.log(error);
     }
   }
 );
@@ -39,7 +38,6 @@ export const acceptFriendAsync = createAsyncThunk(
       const message = response.data;
       return message;
     } catch (error) {
-      console.log(error);
     }
   }
 );
@@ -47,7 +45,6 @@ export const acceptFriendAsync = createAsyncThunk(
 export const getUserByIdAsync = createAsyncThunk(
   "user/getUserByIdAsync",
   async (userId) => {
-    console.log("fetching data");
     const data = await Axios.get(`https://chat-web-vz9a.onrender.com/api/user/${userId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -73,7 +70,6 @@ export const FindUserByNameAsync = createAsyncThunk(
       const message = response.data;
       return message;
     } catch (error) {
-      console.log(error);
     }
   }
 );
@@ -84,19 +80,14 @@ const UserSlice = createSlice({
   reducers: {},
   extraReducers: {
     [addNewFriendAsync.fulfilled]: (state, action) => {
-      console.log("adding friend successfully");
     },
     [acceptFriendAsync.fulfilled]: (state, action) => {
-      console.log("accepting friend successfully");
     },
     [getUserByIdAsync.fulfilled]: (state, action) => {
-      console.log(action.payload.data.data.user);
       state = { ...action.payload.data.data.user };
-      console.log("getting user successfully");
       return action.payload.data.data.user;
     },
     [FindUserByNameAsync.fulfilled]: (state, action) => {
-      console.log("finding user successfully");
     }
   },
 });

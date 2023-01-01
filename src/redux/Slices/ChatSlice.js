@@ -3,7 +3,6 @@ import Axios from "axios";
 export const getAllChatsAsync = createAsyncThunk(
   "chats/getAllchatAsync",
   async () => {
-    console.log("fetching data");
     const data = await Axios.get("https://chat-web-vz9a.onrender.com/api/chat", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -33,7 +32,6 @@ export const getAllChatsAsync = createAsyncThunk(
          state.chats.find(
            (chat) => chat._id == action.payload.id
          ).latestMessage.createAt = action.payload.createAt;
-        console.log(state);
     },
     
   },

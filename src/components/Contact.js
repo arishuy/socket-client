@@ -8,7 +8,6 @@ import {timeSince} from "../../src/utils/changeDate";
 const Contact = () => {
   const [chats, setChats] = React.useState([]);
   const socket = useSelector((state) => state.socket.socket);
-  console.log(chats);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllChatsAsync()).then((res) => {
@@ -23,7 +22,6 @@ const Contact = () => {
         temp.latestMessage.createdAt = data.createdAt;
         setChats([...chats]);
       }
-      console.log(chat);
 
     });
   }, [socket]);
@@ -36,7 +34,6 @@ const Contact = () => {
         chatId={chat._id}
         name={username===chat.users[0].name?chat.users[1].name:chat.users[0].name}
         latestMessage={chat.latestMessage?.content}
-        receiverId={username===chat.users[0].name?chat.users[1]._id:chat.users[0]._id}
         time={timeSince(new Date (chat.latestMessage?.createdAt))}
       />
     );

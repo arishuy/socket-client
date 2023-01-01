@@ -15,7 +15,6 @@ export const createNewMessageAsync = createAsyncThunk(
       const message = response.data;
       return message;
     } catch (error) { 
-      console.log(error);
     }
   }
 );
