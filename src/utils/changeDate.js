@@ -25,8 +25,3 @@ export function timeSince(date) {
   return Math.floor(seconds) + " seconds";
 }
 //export default timeSince;
-var aDay = 24 * 60 * 60 * 1000;
-var mydate = new Date("2022-10-04T13:20:03.402Z");
-//console.log(mydate);
-console.log(timeSince(mydate));
-console.log(timeSince(new Date(Date.now() - aDay * 2)));

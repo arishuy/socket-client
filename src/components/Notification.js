@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import '../scss/components/Notification.css'
 import Notificationcard from './Card/Notificationcard'
 import { useDispatch } from 'react-redux'

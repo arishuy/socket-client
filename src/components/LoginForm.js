@@ -3,14 +3,9 @@ import "../scss/components/Login.css";
 import { useDispatch } from "react-redux";
 import { loginAsync } from "../redux/Slices/AuthSlice";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-// import AuthContext from "../store/AuthContent";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 import { getSocketStatus } from "../redux/Slices/SocketSlice";
 const LoginForm = () => {
-
-  // const auth_context = useContext(AuthContext);
-
   let navigate = useNavigate();
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");

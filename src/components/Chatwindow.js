@@ -10,7 +10,6 @@ import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
 import { useParams } from "react-router";
 import Contact from "./Contact";
 import { addLatestMessage } from "../redux/Slices/ChatSlice";
-import { timeSince } from "../../src/utils/changeDate";
 
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = useSelector((state) => state.message.messages);
@@ -107,6 +106,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     setReceiverId(mes?.sender);
     dispatch(getUserByIdAsync(receiverId)).then(res => {
       setReceiverName(res.payload.data.data.user.name);
+      console.log(res.payload.data.data.user.name);
     })
   },[chatId]);
 

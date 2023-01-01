@@ -7,12 +7,17 @@ import "../scss/components/PersonalContent.css";
 import { getUserByIdAsync } from '../redux/Slices/UserSlice';
 const PersonalContent = () => {
   const params = useParams();
+  let isMe = false;
+  const myID = useSelector((state) => state.auth[0].user._id);
   const [isFriend, setIsFriend] = React.useState(false);
   const [isRequest, setIsRequest] = React.useState(false);
-  const [personId, setPersonId] = React.useState(params.id);
+  const personId = params.id;
   const [person, setPerson] = React.useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  if (personId === myID) {
+    isMe = true;
+  }
   const handleCancelRequest = () => {
     setIsRequest(false);
   };
@@ -28,7 +33,6 @@ const PersonalContent = () => {
        setPerson(res.payload.data.data.user);
      });
    }, [dispatch]);
-    const myID = useSelector((state) => state.auth[0].user._id);
     const r1 = person.friends?.find(friend => friend._id === myID)?true:false;
     useEffect(() => {
       setIsFriend(r1);
@@ -56,10 +60,12 @@ const PersonalContent = () => {
               <h3>{personName}</h3>
             </div>
           </div>
+          { isMe?null:
           <div className="personal-content-header-button">
-            <button className="addfriend-btn btn" onClick={isFriend?handleMessage:isRequest?handleCancelRequest:handleAddingFriend}>{isFriend?"Message":isRequest?"Cancel Request":"Add Friend"}</button>
+           <button className="addfriend-btn btn" onClick={isFriend?handleMessage:isRequest?handleCancelRequest:handleAddingFriend}>{isFriend?"Message":isRequest?"Cancel Request":"Add Friend"}</button>
             <button className="block-btn btn" >Block</button>
           </div>
+          }
         </div>
       </div>
     )

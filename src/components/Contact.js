@@ -4,7 +4,7 @@ import Contactcard from "./Card/Contactcard";
 import Photo from "./Card/Photo";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
-import {timeSince} from "../../src/utils/changeDate"; 
+import {timeSince} from "../utils/changeDate";
 const Contact = () => {
   const [chats, setChats] = React.useState([]);
   const socket = useSelector((state) => state.socket.socket);
