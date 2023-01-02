@@ -1,15 +1,15 @@
-import React from "react";
+import React, {lazy} from "react";
 import { Route, Routes } from "react-router-dom";
 
-import DashBoard from "../pages/DashBoard";
-import Message_ChatWindow from "../pages/Message_ChatWindow";
-import Message_Contact from "../pages/Message_Contact";
-import People from "../pages/People";
-import Reminder from "../pages/Reminder";
-import Setting from "../pages/Setting";
-import Login from "../pages/Login";
-import Empty from "../pages/Empty";
-import PersonalPage from "../pages/PersonalPage";
+const DashBoard = lazy(() => import("../pages/DashBoard"));
+const Message_ChatWindow = lazy(() => import("../pages/Message_ChatWindow"));
+const Message_Contact = lazy(() => import("../pages/Message_Contact"));
+const People = lazy(() => import("../pages/People"));
+const Reminder = lazy(() => import("../pages/Reminder"));
+const Setting = lazy(() => import("../pages/Setting"));
+const Login = lazy(() => import("../pages/Login"));
+const Empty = lazy(() => import("../pages/Empty"));
+const PersonalPage = lazy(() => import("../pages/PersonalPage"));
 
 function routes() {
   return (
