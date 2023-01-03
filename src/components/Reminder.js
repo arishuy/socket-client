@@ -35,7 +35,7 @@ const Reminder = () => {
     };
     return (
       <div style={{ display: "flex" }}>
-        <Recocard title={reminder.title} time={reminder.time} />
+        <Recocard key={reminder._id} title={reminder.title} time={reminder.time} />
         <div>
           <a className="button x" onClick={handleClick1} style={{ display : isDisplay1 ? "flex" : "none" }}>
             <i class="fa-solid fa-x"></i>

@@ -41,6 +41,7 @@ const NotificationSlice = createSlice({
       [createNewNotificationAsync.fulfilled]: (state, action) => { 
       }
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export default NotificationSlice.reducer;

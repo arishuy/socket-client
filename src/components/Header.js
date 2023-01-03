@@ -7,13 +7,13 @@ import {datenow} from "../utils/datenow";
 
 
 const Header = () => {
-  let datetime = datenow();
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     datetime = datenow();
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  const [datetime, setDatetime] = React.useState(datenow());
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDatetime(datenow());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
   const socket = useSelector((state) => state.socket.socket);
   return (
       <div id="header">

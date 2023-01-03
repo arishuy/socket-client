@@ -5,7 +5,7 @@ const Empty = () => {
     <div className="empty">
       <div className="login-hp">
         <a href="/login">
-      <button class="btn-59">
+      <button className="btn-59">
         <span>
           Login
           </span>

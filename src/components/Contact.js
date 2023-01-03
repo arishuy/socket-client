@@ -30,7 +30,7 @@ const Contact = () => {
   const allChats = useSelector((state) => state.chats.chats);
   const allChatsElement = allChats?.map((chat) => {
     return (
-      <Contactcard
+      <Contactcard key={chat._id}
         chatId={chat._id}
         name={username===chat.users[0].name?chat.users[1].name:chat.users[0].name}
         latestMessage={chat.latestMessage?.content}

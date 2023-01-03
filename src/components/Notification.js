@@ -47,7 +47,7 @@ const Notification = ({ socket }) => {
   const listNotifications = notifications?.map((notification) => {
     return (
       <Link to={`/Message_ChatWindow/${notification.receiverChat}`} style={{ textDecoration: 'none', color: 'black' }}>
-      <Notificationcard name={notification.sender} date={"2021-06-01"} content={notification.content} chatId={notification.receiverChat}
+      <Notificationcard key={notification._id} name={notification.sender} date={"2021-06-01"} content={notification.content} chatId={notification.receiverChat}
         />
       </Link>
     );
@@ -56,7 +56,7 @@ const Notification = ({ socket }) => {
     <div className="notification">
       <div className="notification-bell" onClick={handleNotification}>
         <div className="notification-circle">4</div>
-        <i class="fa-solid fa-bell fa-xl"></i>
+        <i className="fa-solid fa-bell fa-xl"></i>
       </div>
       {isDisplay &&
         <div className="notification-list">

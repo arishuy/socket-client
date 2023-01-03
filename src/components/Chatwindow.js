@@ -87,7 +87,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const messageListComponents = messageList?.map((message) => {
     return (
       <div>
-        <Messcard
+        <Messcard key={message._id}
           classname={
             message.sender === user.user._id
               ? "mess-content-right"

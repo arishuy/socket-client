@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import ChatReducer from "./Slices/ChatSlice";
 import AuthReducer from "./Slices/AuthSlice";
 import MessageReducer from "./Slices/MessageSlice";
@@ -7,6 +7,9 @@ import SocketReducer from "./Slices/SocketSlice";
 import NotificationReducer from "./Slices/NotificationSlice";
 import ReminderSlice from "./Slices/ReminderSlice";
 
+const customMiddleware = getDefaultMiddleware({
+  serializableCheck: false,
+});
 export default configureStore({
   reducer: {
     chats: ChatReducer,
@@ -17,4 +20,5 @@ export default configureStore({
     notifications: NotificationReducer,
     reminder: ReminderSlice,
   },
+  middleware: customMiddleware,
 });

@@ -28,7 +28,7 @@ const People = () => {
   });
   const requestElements = people.waitingRequestFriends?.map((request) => {
     return (
-        <Requestcard requestId={request._id} name={request.name} />
+        <Requestcard key={request._id} requestId={request._id} name={request.name} />
     );
   });
   function handleSearch() {
