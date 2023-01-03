@@ -15,7 +15,6 @@ export function datenow ()
     var year = d.getFullYear();
     var hour = d.getHours();
     var minutes = d.getMinutes();
-    var seconds = d.getSeconds();
-    var dateNow = n + ", " + date + "/" + month + "/" + year + ", " + hour + ":" + minutes + ":" + seconds;
+    var dateNow = n + ", " + date + "/" + month + "/" + year + ", " + hour + ":" + minutes;
     return dateNow;
 }

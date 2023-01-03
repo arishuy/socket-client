@@ -137,39 +137,21 @@
   color: #000000;
   margin-left: 0.625rem;
 }
-@media screen and (max-width: 412px) {
-  .content .message .message-content {
-    width: 20rem ;
-    height: 5rem;
-    margin-left: 0;
-    display: flex;
+@media screen and (max-width:  768px) {
+  .reminder1 .message {
+    margin-left: 3rem;
+    width: 70vw;
   }
-  .content .message .message-content .kimochi {
-    width: 3rem;
-    height: 3rem;
-    margin: -0.2rem 0px 0.5rem 0.5rem;
-  }
-  .content .message {
-    padding: 0;
-    margin: 0;
-  }
-  .content {
-    margin-left: 2em;
-  }
-  .reminder1 {
+  .rank {
     display: none;
   }
-  .content .message-text {
+  .content {
+    margin-left: 0;
   }
-  .content .message .message-content h1 {
-    font-size: 1rem;
-  }  
-  .content .message .message-content p {
-    font-size: 0.8rem;
-    width: fit-content;
-    height: fit-content;
-
+  .reminder1 .message i{
+    display: none;
   }
-
-
+  .reminder1 .message p {
+    width: 100%;
+  }
 }

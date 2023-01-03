@@ -39,4 +39,9 @@
     top: 11em;
     border-radius: 0.5em;
 }
-  
+
+@media screen and (max-width: 768px) {
+    .notification{
+        display: none;
+    }
+  }

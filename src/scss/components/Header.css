@@ -48,14 +48,6 @@
   color: red;
   transform: scale(1.1);
 }
-/* .navigation .my-account {
-  position: absolute;
-  top: 3.7rem;
-}
-.navigation .logout {
-  position: absolute;
-  top: 5.1rem;
-} */
 .navigation .sub-navigation {
   position: absolute;
   top: 3.7rem;
@@ -73,4 +65,9 @@
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 0.25rem;
+}
+@media screen and (max-width: 768px) {
+  .navigation h1 {
+    display: none;
+  }
 }

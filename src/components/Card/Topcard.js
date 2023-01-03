@@ -12,7 +12,7 @@ const Topcard = (props) => {
       <div>
         <div className="top-person st1">
           <div className="crown">
-        <i class="fa-solid fa-crown"></i>
+        <i className="fa-solid fa-crown"></i>
         </div>
           <div className="top-avatar" onClick={handleClick}>
             <img

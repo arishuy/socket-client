@@ -176,3 +176,12 @@
 .contact-message::-webkit-scrollbar-thumb:hover {
   background: rgb(16, 160, 179);
 }
+
+@media screen and (max-width:  768px) {
+  .contact-body {
+    width: 96vw;
+  }
+  .search-content input {
+    width: 100%;
+  }
+}

@@ -14,7 +14,7 @@ const Content = () => {
   const allReminders = reminders?.map((reminder) => {
     return (
       <div style={{ display: "flex" }}>
-        <Remindercard name={reminder.title} time={reminder.date} />
+        <Remindercard key={reminder._id} name={reminder.title} time={reminder.date} />
       </div>
     );
   });
@@ -22,9 +22,9 @@ const Content = () => {
     <div className="content col-full">
       <div className="rank col-half">
         <h1>
-          Ranking  <i class="fa-solid fa-ranking-star"></i></h1>
+          Ranking  <i className="fa-solid fa-ranking-star"></i></h1>
         <div className="rank__content">
-        <Topcard name="Huy Bui" amount="200"/>
+        <Topcard key="" name="Huy Bui" amount="200"/>
         </div>
       </div>
       <div className="reminder1 col-half">
