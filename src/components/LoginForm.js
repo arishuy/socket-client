@@ -26,7 +26,7 @@ const LoginForm = () => {
       if (auth.payload.status === "success") {
         dispatch(getSocketStatus({userId: auth.payload.data.user._id }));
         dispatchAllchats(getAllChatsAsync()).then(() => {
-          localStorage.setItem("token", auth.payload.token);
+          // localStorage.setItem("token", auth.payload.token);
           navigate("/dashboard");
         });
         // auth_context.login(auth.payload.token);

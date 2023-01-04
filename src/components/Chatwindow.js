@@ -16,11 +16,11 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const dispatch = useDispatch();
   const chatId = useParams().id;
   const [receiverId, setReceiverId] = useState("");
-  const [newNotification, setNewNotification] = React.useState({});
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
   const [receiverName, setReceiverName] = useState("");
   const dispatch1 = useDispatch();
+  console.log(chatId);
    useEffect(() => {
      setMessageList(allMessages);
    }, [chatId,dispatch]);
@@ -74,10 +74,12 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   };
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageList((list) => [...list, data]);
+      if (data.chat == chatId) {
+        setMessageList((list) => [...list, data]);
+      }
        dispatch1(
          addLatestMessage({
-           id: chatId,
+           id: data.chat,
            latestMessage: data.sender == user.user._id ? "you: " + data.content : data.content,
            createdAt: data.createdAt,
          })
@@ -104,7 +106,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       (mes) => mes.sender !== user.user._id
     );
     setReceiverId(mes?.sender);
-    dispatch(getUserByIdAsync(receiverId)).then(res => {
+    dispatch(getUserByIdAsync(mes?.sender)).then(res => {
       setReceiverName(res.payload.data.data.user.name);
       console.log(res.payload.data.data.user.name);
     })
