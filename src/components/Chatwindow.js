@@ -20,7 +20,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const [messageList, setMessageList] = React.useState(allMessages);
   const [receiverName, setReceiverName] = useState("");
   const dispatch1 = useDispatch();
-  console.log(chatId);
    useEffect(() => {
      setMessageList(allMessages);
    }, [chatId,dispatch]);
@@ -74,7 +73,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   };
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      if (data.chat == chatId) {
+      if (data.chat === chatId) {
         setMessageList((list) => [...list, data]);
       }
        dispatch1(
@@ -85,7 +84,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
          })
        );
     });
-  }, [socket]);
+  }, [socket, chatId]);
   const messageListComponents = messageList?.map((message) => {
     return (
       <div>
@@ -108,7 +107,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     setReceiverId(mes?.sender);
     dispatch(getUserByIdAsync(mes?.sender)).then(res => {
       setReceiverName(res.payload.data.data.user.name);
-      console.log(res.payload.data.data.user.name);
     })
   },[chatId]);
 

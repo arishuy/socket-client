@@ -16,7 +16,7 @@ const Contact = () => {
   }, [dispatch]);
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      let temp = chats.find((chat) => { chat._id == data.chatId });
+      let temp = chats.find((chat) => { chat._id == data.chat });
       if (temp) {
         temp.latestMessage.content = data.content;
         temp.latestMessage.createdAt = data.createdAt;
@@ -26,7 +26,6 @@ const Contact = () => {
     });
   }, [socket]);
   const username = useSelector((state) => state.auth[0].user.name);
-  const chat = useSelector((state) => state.chat);  
   const allChats = useSelector((state) => state.chats.chats);
   const allChatsElement = allChats?.map((chat) => {
     return (
@@ -53,7 +52,7 @@ const Contact = () => {
         </div>
         <div className="search">
           <div className="search-content">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
             <input type="search" placeholder="Enter a name"></input>
           </div>
         </div>

@@ -9,7 +9,6 @@ import {datenow} from "../utils/datenow";
 const Header = () => {
   const [datetime, setDatetime] = React.useState(datenow());
   useEffect(() => {
-    console.log("useEffect");
     const interval = setInterval(() => {
       setDatetime(datenow());
     }, 1000*60);
