@@ -11,6 +11,7 @@ import Login from "../pages/Login";
 import Empty from "../pages/Empty";
 import PersonalPage from "../pages/PersonalPage";
 import Message_GroupChat from "../pages/Message_GroupChat";
+import Register from "../pages/Register";
 
 function routes() {
   return (
@@ -25,6 +26,7 @@ function routes() {
       <Route path="/Reminder" element={<Reminder />} />
       <Route path="/Setting" element={<Setting />} />
       <Route path="/Groupchat" element={<Message_GroupChat />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 }

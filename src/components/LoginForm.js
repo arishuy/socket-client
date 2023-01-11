@@ -78,6 +78,9 @@ const LoginForm = () => {
               Submit
             </a>
           </form>
+          <a href="/register" style={{textAlign: "center", textDecoration: "none"}}> 
+              <p>Don't have an account?</p>
+              </a>
         </div>
       </div>
     </div>
