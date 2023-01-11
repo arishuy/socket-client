@@ -10,6 +10,7 @@ import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
 import { useParams } from "react-router";
 import Contact from "./Contact";
 import { addLatestMessage } from "../redux/Slices/ChatSlice";
+import Axios from "axios";
 
 const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = useSelector((state) => state.message.messages);
@@ -20,6 +21,27 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const [messageList, setMessageList] = React.useState(allMessages);
   const [receiverName, setReceiverName] = useState("");
   const dispatch1 = useDispatch();
+  const [chatData, setchatData] = useState();
+  useEffect(() => {
+    async function fetchData() { 
+      const chatData = await Axios.get(
+        `https://chat-web-vz9a.onrender.com/api/chat/${chatId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      setchatData(chatData.data.data);
+    }
+    fetchData();
+    return () => { 
+      // cleanup
+      setchatData({});
+    }
+    //setchatData(chatData.data.data);
+  }, [chatId]);
+  console.log(chatData);
    useEffect(() => {
      setMessageList(allMessages);
    }, [chatId,dispatch]);
@@ -119,8 +141,8 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         <div className="chat-content__header">
         {/* <Link className="link-friend" to={`/PersonalPage/${receiverId}`}> */}
           <img
-            className="contact-avatar" style={{width: "50px", height: "50px", borderRadius: "50%"}}
-            src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
+            className="contact-avatar" style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+            src={chatData?.users?.find((user) => user._id !== receiverId)?.pic}
             ></img>
             {/* </Link> */}
           <h1 className="chat-h1" style={{ fontSize: "1.5rem", fontWeight: "bold",color: "Black",
