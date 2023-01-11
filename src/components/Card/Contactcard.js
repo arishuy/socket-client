@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMessagesAsync } from "../../redux/Slices/MessageSlice";
 import { useNavigate } from "react-router"
 
-const Contactcard = ({chatId,name,latestMessage,time}) => {
+const Contactcard = ({chatId,name,latestMessage,time, avatar}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = async () => {
@@ -16,7 +16,7 @@ const Contactcard = ({chatId,name,latestMessage,time}) => {
       <div className="contact-avatar kimochi">
         <img
           className="avatar__image"
-          src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
+          src={avatar}
           alt="avatar"
         ></img>
       </div>

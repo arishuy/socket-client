@@ -20,11 +20,20 @@ const Contact = () => {
       if (temp) {
         temp.latestMessage.content = data.content;
         temp.latestMessage.createdAt = data.createdAt;
+        chats.sort(function (a, b) {
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return (
+            new timeSince(Date(b.latestMessage.createAt)) -
+            new timeSince(Date(a.latestMessage.createAt))
+          );
+        });
         setChats([...chats]);
       }
 
     });
   }, [socket]);
+  console.log(chats);
   const username = useSelector((state) => state.auth[0].user.name);
   const allChats = useSelector((state) => state.chats.chats);
   const allChatsElement = allChats?.map((chat) => {
@@ -33,10 +42,20 @@ const Contact = () => {
         chatId={chat._id}
         name={username===chat.users[0].name?chat.users[1].name:chat.users[0].name}
         latestMessage={chat.latestMessage?.content}
-        time={timeSince(new Date (chat.latestMessage?.createdAt))}
+        time={timeSince(new Date(chat.latestMessage?.createdAt))}
+        avatar={username===chat.users[0].name?chat.users[1].pic:chat.users[0].pic}
       />
     );
   });
+
+  const TopFourFriendsElement = allChats?.slice(0, 4).map((chat) => {
+    return (
+      <Photo
+        photoId={chat._id}
+        src={username === chat.users[0].name ? chat.users[1].pic:chat.users[0].pic}
+      />
+    );
+   });
   
   return (
     <div className="contact-body">
@@ -44,10 +63,7 @@ const Contact = () => {
         <div className="contact-regular">
           <h1>Regular Contact</h1>
           <div className="contact-avatar">
-            <Photo src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg" />
-            <Photo src="https://play-lh.googleusercontent.com/4qAz40o6M5w6hJ62VsjwGbYueB0fRWPmiG1yOZpNHn3qo2uzlhZZ1mwE5jtBlPp3Lw" />
-            <Photo src="https://khoinguonsangtao.vn/wp-content/uploads/2022/07/avatar-gau-cute.jpg" />
-            <Photo src="https://i.bloganchoi.com/bloganchoi.com/wp-content/uploads/2021/07/440d2bdf5e1e485b027e41fedaf33bbc-696x696.jpg?fit=700%2C20000&quality=95&ssl=1" />
+            {TopFourFriendsElement}
           </div>
         </div>
         <div className="search">
