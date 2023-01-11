@@ -55,7 +55,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         sender: user.user._id,
         chat: chatId,
         content: currentMessage,
-        createdAt: new Date().now,
+        createdAt: new Date(),
       };
       await socket.emit("inChat", chatId);
       await socket.emit("send_message", messageData);
@@ -65,9 +65,10 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         addLatestMessage({
           id: chatId,
           latestMessage: "you: " + currentMessage,
-          createdAt: new Date().now,
+          createAt: messageData.createdAt,
         })
       );
+      console.log (messageData);
       setMessageList((list) => [...list, messageData]);
       dispatch(createNewMessageAsync(messageData));
       await socket.emit("send_notification",
@@ -103,7 +104,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
          addLatestMessage({
            id: data.chat,
            latestMessage: data.sender == user.user._id ? "you: " + data.content : data.content,
-           createdAt: data.createdAt,
+           createAt: data.createdAt,
          })
        );
     });
@@ -160,7 +161,9 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
               margin: "0.5rem 0 0.5rem 0",
             }}
           >
-            {receiverName}
+            {chatData?.users[0]._id == user.user._id
+              ? chatData?.users[1].name
+              : chatData?.users[0].name}
           </h1>
         </div>
         <ScrollToBottom className="chat-content__message1">

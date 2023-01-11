@@ -7,6 +7,7 @@ import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 import {timeSince} from "../utils/changeDate";
 const Contact = () => {
   const [chats, setChats] = React.useState([]);
+  const chatFromRedux = useSelector((state) => state.chats);
   const socket = useSelector((state) => state.socket.socket);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,30 +20,31 @@ const Contact = () => {
       let temp = chats.find((chat) => { chat._id == data.chat });
       if (temp) {
         temp.latestMessage.content = data.content;
-        temp.latestMessage.createdAt = data.createdAt;
+        temp.latestMessage.createAt = data.createdAt;
         chats.sort(function (a, b) {
           // Turn your strings into dates, and then subtract them
           // to get a value that is either negative, positive, or zero.
           return (
-            new timeSince(Date(b.latestMessage.createAt)) -
-            new timeSince(Date(a.latestMessage.createAt))
+            new Date(b.latestMessage.createAt) -
+            new Date(a.latestMessage.createAt)
           );
         });
-        setChats([...chats]);
+        setChats([chats]);
       }
 
     });
   }, [socket]);
   console.log(chats);
+  console.log(chatFromRedux)
   const username = useSelector((state) => state.auth[0].user.name);
   const allChats = useSelector((state) => state.chats.chats);
   const allChatsElement = allChats?.map((chat) => {
     return (
       <Contactcard key={chat._id}
         chatId={chat._id}
-        name={username===chat.users[0].name?chat.users[1].name:chat.users[0].name}
+        name={username===chat?.users[0].name?chat.users[1].name:chat.users[0].name}
         latestMessage={chat.latestMessage?.content}
-        time={timeSince(new Date(chat.latestMessage?.createdAt))}
+        time={timeSince(new Date(chat.latestMessage?.createAt))}
         avatar={username===chat.users[0].name?chat.users[1].pic:chat.users[0].pic}
       />
     );

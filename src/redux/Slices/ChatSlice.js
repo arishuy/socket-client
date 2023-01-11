@@ -28,18 +28,26 @@ export const getAllChatsAsync = createAsyncThunk(
     name: "chats",
   initialState: [],
     reducers: {
-        addLatestMessage: (state, action) => {
-        state.chats.find((chat) => chat._id == action.payload.id).latestMessage.content = action.payload.latestMessage;
-         state.chats.find(
-           (chat) => chat._id == action.payload.id
-        ).latestMessage.createAt = action.payload.createAt;
-        //  state.chats.sort(
-        //    (a, b) =>
-        //       //timeSince(new Date(b.latestMessage.createAt)) - timeSince(new Date(a.latestMessage.createAt))
-        //  );
+      addLatestMessage: (state, action) => {
+        let temp = state.chats.find((chat) => chat._id == action.payload.id);
+        if (temp) {
+          temp.latestMessage.content = action.payload.latestMessage;
+          //temp.latestMessage.createdAt = action.payload.createdAt;
+          console.log(action.payload.createAt);
+          temp.latestMessage.createAt = action.payload.createAt;
+          state.chats.sort(function (a, b) {
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return (
+              new Date(b.latestMessage.createAt) -
+              new Date(a.latestMessage.createAt)
+            );
+          });
+        }
+        console.log(state.chats);
+      }
+      
     },
-    
-  },
   extraReducers: {
     [getAllChatsAsync.fulfilled]: (state, action) => {
       state = action.payload.data.data;
