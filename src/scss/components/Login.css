@@ -182,9 +182,9 @@
   
   @media screen and (max-width:  768px) {
     .register-hp {
-      left: 51vw;
+      left: 51vw !important;
   }
     .login-hp {
-      left: 18vw;
+      left: 18vw !important;  
     }
   }
