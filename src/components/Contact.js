@@ -20,11 +20,20 @@ const Contact = () => {
       if (temp) {
         temp.latestMessage.content = data.content;
         temp.latestMessage.createdAt = data.createdAt;
+        chats.sort(function (a, b) {
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return (
+            new timeSince(Date(b.latestMessage.createAt)) -
+            new timeSince(Date(a.latestMessage.createAt))
+          );
+        });
         setChats([...chats]);
       }
 
     });
   }, [socket]);
+  console.log(chats);
   const username = useSelector((state) => state.auth[0].user.name);
   const allChats = useSelector((state) => state.chats.chats);
   const allChatsElement = allChats?.map((chat) => {

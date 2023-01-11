@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "axios";
+// import { timeSince } from "../../utils/timeSince";
 export const getAllChatsAsync = createAsyncThunk(
   "chats/getAllchatAsync",
   async () => {
@@ -31,7 +32,11 @@ export const getAllChatsAsync = createAsyncThunk(
         state.chats.find((chat) => chat._id == action.payload.id).latestMessage.content = action.payload.latestMessage;
          state.chats.find(
            (chat) => chat._id == action.payload.id
-         ).latestMessage.createAt = action.payload.createAt;
+        ).latestMessage.createAt = action.payload.createAt;
+        //  state.chats.sort(
+        //    (a, b) =>
+        //       //timeSince(new Date(b.latestMessage.createAt)) - timeSince(new Date(a.latestMessage.createAt))
+        //  );
     },
     
   },

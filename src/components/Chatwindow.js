@@ -22,6 +22,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const [receiverName, setReceiverName] = useState("");
   const dispatch1 = useDispatch();
   const [chatData, setchatData] = useState();
+  //const [receiverPic, setReceiverPic] = useState();
   useEffect(() => {
     async function fetchData() { 
       const chatData = await Axios.get(
@@ -32,14 +33,14 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
           },
         }
       );
-      setchatData(chatData.data.data);
+      console.log(chatData);
+      setchatData(chatData.data.data.chat);
     }
     fetchData();
-    return () => { 
-      // cleanup
-      setchatData({});
-    }
-    //setchatData(chatData.data.data);
+    // return () => { 
+    //   // cleanup
+    //   setchatData({});
+    // }
   }, [chatId]);
   console.log(chatData);
    useEffect(() => {
@@ -139,14 +140,28 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       </div>
       <div className="chat-content">
         <div className="chat-content__header">
-        {/* <Link className="link-friend" to={`/PersonalPage/${receiverId}`}> */}
+          {/* <Link className="link-friend" to={`/PersonalPage/${receiverId}`}> */}
           <img
-            className="contact-avatar" style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-            src={chatData?.users?.find((user) => user._id !== receiverId)?.pic}
-            ></img>
-            {/* </Link> */}
-          <h1 className="chat-h1" style={{ fontSize: "1.5rem", fontWeight: "bold",color: "Black",
-    margin: "0.5rem 0 0.5rem 0"}}>{receiverName}</h1>
+            className="contact-avatar"
+            style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+            src={
+              chatData?.users[0]._id == user.user._id
+                ? chatData?.users[1].pic
+                : chatData?.users[0].pic
+            }
+          ></img>
+          {/* </Link> */}
+          <h1
+            className="chat-h1"
+            style={{
+              fontSize: "1.5rem",
+              fontWeight: "bold",
+              color: "Black",
+              margin: "0.5rem 0 0.5rem 0",
+            }}
+          >
+            {receiverName}
+          </h1>
         </div>
         <ScrollToBottom className="chat-content__message1">
           <div className="chat-content__message">{messageListComponents}</div>
