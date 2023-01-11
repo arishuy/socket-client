@@ -180,3 +180,11 @@
     }
   }
   
+  @media screen and (max-width:  768px) {
+    .register-hp {
+      left: 51vw;
+  }
+    .login-hp {
+      left: 18vw;
+    }
+  }
