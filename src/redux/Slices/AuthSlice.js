@@ -13,6 +13,20 @@ export const loginAsync = createAsyncThunk(
     return user;
   }
 );
+
+export const signupAsync = createAsyncThunk(
+  "auth/signUpAsync",
+  async (payload) => {
+    const response = await Axios.post(
+      "https://chat-web-vz9a.onrender.com/api/auth/signup",
+      payload
+    );
+    localStorage.setItem("token", response.data.token);
+    const user = response.data;
+    return user;
+  }
+)
+
 const AuthSlice = createSlice({
   name: "auth",
   initialState: [],

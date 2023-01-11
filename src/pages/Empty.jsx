@@ -12,7 +12,15 @@ const Empty = () => {
         </button>
         </a>
         </div>
-
+      <div className="register-hp">
+        <a href="/register">
+      <button className="btn-59">
+        <span>
+          Register
+          </span>
+          </button>
+</a>
+</div>
       <h1>
         <span>C</span>
         <span>H</span>

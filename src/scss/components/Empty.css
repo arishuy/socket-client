@@ -17,6 +17,7 @@
 .empty h1 {
 	font-size: 12vw;
 	font-family: Nabla;
+  margin-bottom: 25rem;
 }
 
 @font-palette-values --Nabla {
@@ -47,9 +48,20 @@
 	}
 }
 .login-hp {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    bottom: 25%;
+    left: 40vw;
+}
+.register-hp {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 25%;
+  left: 50vw;
 }
 .btn-59,
 .btn-59 *,
