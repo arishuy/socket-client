@@ -22,7 +22,7 @@ const People = () => {
   const friendElements = people.friends?.map((friend) => {
     return (
       <Link className="link-friend" to={`/PersonalPage/${friend._id}`}>
-        <Friendcard key={friend._id} name={friend.name} />
+        <Friendcard key={friend._id} name={friend.name} pic={friend.pic} />
       </Link>
     );
   });

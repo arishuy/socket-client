@@ -31,6 +31,10 @@ const AuthSlice = createSlice({
   name: "auth",
   initialState: [],
   reducers: {
+    updateState: (state, action) => {
+      state[0].user = action.payload;
+      return state;
+    },
     getCurrentState: (state) => {
       return state;},
     logoutAccount: (state) => { 

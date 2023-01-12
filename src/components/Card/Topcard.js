@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 const Topcard = (props) => {
   const navigate = useNavigate();
   function handleClick() {
-    navigate("/PersonalPage/6332e98c060472cef92f31cc");
+    navigate("/PersonalPage/633c2fdd7603f0b89c8aaf96");
   }
   return (
     <div className="top-content">

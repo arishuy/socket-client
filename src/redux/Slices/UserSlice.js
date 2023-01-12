@@ -73,7 +73,25 @@ export const FindUserByNameAsync = createAsyncThunk(
     }
   }
 );
-
+export const UpdateUserAsync = createAsyncThunk(
+  "user/UpdateUserAsync",
+  async (payload) => {
+    try {
+      const response = await Axios.patch(
+        `https://chat-web-vz9a.onrender.com/api/user/updateUser`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const message = response.data;
+      return message;
+    } catch (error) {
+    }
+  }
+)
 const UserSlice = createSlice({
   name: "user",
   initialState:{},
@@ -88,6 +106,8 @@ const UserSlice = createSlice({
       return action.payload.data.data.user;
     },
     [FindUserByNameAsync.fulfilled]: (state, action) => {
+    },
+    [UpdateUserAsync.fulfilled]: (state, action) => {
     }
   },
 });
