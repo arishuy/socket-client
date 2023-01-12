@@ -10,7 +10,7 @@ const Topcard = (props) => {
   useEffect(() => {
     async function fetchData() {
       const data = await Axios.get(
-        "http://localhost:5000/api/message/getTopThreeFriends",
+        "https://chat-web-vz9a.onrender.com/api/message/getTopThreeFriends",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
