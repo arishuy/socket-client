@@ -69,7 +69,7 @@ const PersonalContent = () => {
          </div>
           :
           <div className="personal-content-header-button">
-           <button className="addfriend-btn btn" onClick={isFriend?handleMessage:isRequest?handleCancelRequest:handleAddingFriend}>{isFriend?"Message":isRequest?"Cancel Request":"Add Friend"}</button>
+          {isFriend?null:<button className="addfriend-btn btn" onClick={isRequest?handleCancelRequest:handleAddingFriend}>{isRequest?"Cancel Request":"Add Friend"}</button>}
             <button className="block-btn btn" >Block</button>
           </div>
           }
