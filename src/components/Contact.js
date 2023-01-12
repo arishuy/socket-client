@@ -6,12 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 import {timeSince} from "../utils/changeDate";
 import Newgroup from "./Newgroup";
+import { getUserByIdAsync } from "../redux/Slices/UserSlice";
+
 const Contact = () => {
   const [chats, setChats] = React.useState([]);
+  const user = useSelector((state) => state.auth);
+  const userId = user[0].user._id;
   const chatFromRedux = useSelector((state) => state.chats);
   const socket = useSelector((state) => state.socket.socket);
   const dispatch = useDispatch();
+  const dispatchFriend = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(false);
+  useEffect(() => {
+    dispatchFriend(getUserByIdAsync(userId)).then((res) => { 
+    });
+  }, [dispatchFriend]);
   const handleDisplay = () => {
     setIsDisplay(!isDisplay);
   };
