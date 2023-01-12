@@ -10,7 +10,7 @@
 }
 .contact-content {
   display: flex;
-  height: 20vh;
+  height: 25vh;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -78,9 +78,8 @@
   color: rgb(67, 67, 67);
 }
 .contact-message {
-  height: calc(92vh - 23vh);
+  height: calc(92vh - 25vh);
   padding-left: 2rem;
-  padding-top: 5rem;
   padding-right: 1.25rem;
   overflow: auto;
   overflow-x: hidden;
@@ -184,4 +183,15 @@
   .search-content input {
     width: 100%;
   }
+}
+
+.search button {
+  margin-left: -3rem;
+  border-radius: 5px;
+  padding: 0.2rem;
+  background: aquamarine;
+}
+.search button:hover {
+  background-color: black;
+  color: white;
 }
