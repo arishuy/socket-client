@@ -16,15 +16,13 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
   const allMessages = useSelector((state) => state.message.messages);
   const dispatch = useDispatch();
   const chatId = useParams().id;
-  const [receiverId, setReceiverId] = useState("");
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
-  const [receiverName, setReceiverName] = useState("");
   const dispatch1 = useDispatch();
   const [chatData, setchatData] = useState();
   //const [receiverPic, setReceiverPic] = useState();
   useEffect(() => {
-    async function fetchData() { 
+    async function fetchData() {
       const chatData = await Axios.get(
         `https://chat-web-vz9a.onrender.com/api/chat/${chatId}`,
         {
@@ -34,10 +32,12 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
         }
       );
       console.log(chatData);
+       socket.emit("inChat", chatId);
+       console.log("join Chat" + chatId);
       setchatData(chatData.data.data.chat);
     }
     fetchData();
-    // return () => { 
+    // return () => {
     //   // cleanup
     //   setchatData({});
     // }
@@ -51,6 +51,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
     console.log("join Chat" + chatId);
    },[chatId])
   const sendMessage = async () => {
+    //
     if (currentMessage !== "") {
       const messageData = {
         sender: user.user._id,
@@ -71,27 +72,27 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       console.log (messageData);
       setMessageList((list) => [...list, messageData]);
       dispatch(createNewMessageAsync(messageData));
-      await socket.emit("send_notification",
-        {
-          sender: user.user.name,
-          senderId: user.user._id,
-          receivers: receiverId,
-          content: `has sent you: ${currentMessage}`,
-          isMessage: true,
-          receiverChat: chatId,
-          Seen: false,
-        });
-       const notifData = {
-         sender: user.user._id,
-         content: `has sent you: ${currentMessage}`,
-         isMessage: true,
-         receivers: receiverId,
-         receiverChat: chatId,
-       };
-      dispatch(
-        createNewNotificationAsync(notifData)
-      ).then((res) => {
-       });
+      // await socket.emit("send_notification",
+      //   {
+      //     sender: user.user.name,
+      //     senderId: user.user._id,
+      //     receivers: receiverId,
+      //     content: `has sent you: ${currentMessage}`,
+      //     isMessage: true,
+      //     receiverChat: chatId,
+      //     Seen: false,
+      //   });
+      //  const notifData = {
+      //    sender: user.user._id,
+      //    content: `has sent you: ${currentMessage}`,
+      //    isMessage: true,
+      //    receivers: receiverId,
+      //    receiverChat: chatId,
+      //  };
+      // dispatch(
+      //   createNewNotificationAsync(notifData)
+      // ).then((res) => {
+      //  });
       setCurrentMessage("");
     }
   };
@@ -109,6 +110,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
        );
     });
   }, [socket, chatId]);
+  console.log(messageList);
   const messageListComponents = messageList?.map((message) => {
     return (
       <div>
@@ -119,20 +121,21 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
               : "mess-content-left"
           }
           content={message.content}
+          pic = {chatData?.users?.find((mem) => mem._id == message.sender).pic}
           time={new Date(message.createdAt).toLocaleTimeString()}
         />
       </div>
     );
   });
-  useEffect(() => {
-    const mes = allMessages?.find(
-      (mes) => mes.sender !== user.user._id
-    );
-    setReceiverId(mes?.sender);
-    dispatch(getUserByIdAsync(mes?.sender)).then(res => {
-      setReceiverName(res.payload.data.data.user.name);
-    })
-  },[chatId]);
+  // useEffect(() => {
+  //   const mes = allMessages?.find(
+  //     (mes) => mes.sender !== user.user._id
+  //   );
+  //   setReceiverId(mes?.sender);
+  //   dispatch(getUserByIdAsync(mes?.sender)).then(res => {
+  //     setReceiverName(res.payload.data.data.user.name);
+  //   })
+  // },[chatId]);
 
   return (
     <div className="chat">
