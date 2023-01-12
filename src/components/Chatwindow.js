@@ -40,8 +40,9 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
    useEffect(() => {
      setMessageList(allMessages);
    }, [chatId,dispatch]);
-   useEffect(() => {
+  useEffect(() => {
     socket.emit("inChat", chatId);
+    console.log("join Chat" + chatId);
    },[chatId])
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -53,7 +54,6 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       };
       await socket.emit("inChat", chatId);
       await socket.emit("send_message", messageData);
-      
       await socket.emit("getAllChats", messageData);
       dispatch1(
         addLatestMessage({
@@ -140,6 +140,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
             className="contact-avatar"
             style={{ width: "50px", height: "50px", borderRadius: "50%" }}
             src={
+              chatData?.isGroupChat?chatData.pic:
               chatData?.users[0]._id == user.user._id
                 ? chatData?.users[1].pic
                 : chatData?.users[0].pic
@@ -155,7 +156,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
               margin: "0.5rem 0 0.5rem 0",
             }}
           >
-            {chatData?.users[0]._id == user.user._id
+            {chatData?.isGroupChat?chatData.chatName:chatData?.users[0]._id == user.user._id
               ? chatData?.users[1].name
               : chatData?.users[0].name}
           </h1>
