@@ -42,10 +42,10 @@ const Contact = () => {
     return (
       <Contactcard key={chat._id}
         chatId={chat._id}
-        name={username===chat?.users[0].name?chat.users[1].name:chat.users[0].name}
+        name={chat.isGroupChat ? chat.chatName :username===chat?.users[0].name?chat.users[1].name:chat.users[0].name}
         latestMessage={chat.latestMessage?.content}
         time={timeSince(new Date(chat.latestMessage?.createAt))}
-        avatar={username===chat.users[0].name?chat.users[1].pic:chat.users[0].pic}
+        avatar={chat.isGroupChat?chat.pic:username===chat.users[0].name?chat.users[1].pic:chat.users[0].pic}
       />
     );
   });

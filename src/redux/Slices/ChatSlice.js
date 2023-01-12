@@ -34,7 +34,9 @@ export const getAllChatsAsync = createAsyncThunk(
           temp.latestMessage.content = action.payload.latestMessage;
           //temp.latestMessage.createdAt = action.payload.createdAt;
           console.log(action.payload.createAt);
+          console.log(temp.latestMessage.createAt);
           temp.latestMessage.createAt = action.payload.createAt;
+          console.log("1");
           state.chats.sort(function (a, b) {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
