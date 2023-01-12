@@ -54,7 +54,7 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
       const messageData = {
         sender: user.user._id,
         chat: chatId,
-        content: "you: " +currentMessage,
+        content: currentMessage,
         createdAt: new Date(),
       };
       await socket.emit("inChat", chatId);
