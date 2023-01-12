@@ -18,6 +18,9 @@ const PersonalContent = () => {
   if (personId === myID) {
     isMe = true;
   }
+  const handleEdit = () => {
+    navigate(`/EditProfile`);
+  };
   const handleCancelRequest = () => {
     setIsRequest(false);
   };
@@ -52,7 +55,7 @@ const PersonalContent = () => {
           <div className="personal-content-header-avatar">
             <img
               className="avatar__image"
-              src="http://chiase24.com/wp-content/uploads/2022/02/tang-hap-hanh-anh-avatar-hai-haeac-nhan-la-ba_t-caea_i-1.jpg"
+              src={person.pic}
             ></img>
           </div>
           <div className="personal-content-header-info">
@@ -60,7 +63,11 @@ const PersonalContent = () => {
               <h3>{personName}</h3>
             </div>
           </div>
-          { isMe?null:
+          { isMe?
+          <div className="personal-content-header-button">
+           <button className="block-btn btn" onClick={handleEdit}  >Edit Profile</button>
+         </div>
+          :
           <div className="personal-content-header-button">
            <button className="addfriend-btn btn" onClick={isFriend?handleMessage:isRequest?handleCancelRequest:handleAddingFriend}>{isFriend?"Message":isRequest?"Cancel Request":"Add Friend"}</button>
             <button className="block-btn btn" >Block</button>
