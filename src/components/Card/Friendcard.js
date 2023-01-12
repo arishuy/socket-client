@@ -7,7 +7,7 @@ const Friendcard = (props) => {
     // navigate("/PersonalPage/6332e98c060472cef92f31cc");
   }
   return (
-    <div className="friend-info" onClick={handleClick}>
+    <div className="friend-info">
       <div className="contact-avatar">
         <img
           className="avatar__image"

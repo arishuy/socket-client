@@ -31,18 +31,10 @@ const Chatwindow = ({ user, reloadMessages, socket }) => {
           },
         }
       );
-      console.log(chatData);
-       socket.emit("inChat", chatId);
-       console.log("join Chat" + chatId);
       setchatData(chatData.data.data.chat);
     }
     fetchData();
-    // return () => {
-    //   // cleanup
-    //   setchatData({});
-    // }
   }, [chatId]);
-  console.log(chatData);
    useEffect(() => {
      setMessageList(allMessages);
    }, [chatId,dispatch]);

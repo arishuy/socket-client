@@ -12,6 +12,7 @@
     left: 0;
     bottom: 0;
     right: 0;
+    z-index: 999;
   }
   .open {
     display: block;
@@ -197,4 +198,7 @@
   }
   .list-friend::-webkit-scrollbar-thumb:hover {
     background: rgb(16, 160, 179);
+  }
+  .selected i {
+    
   }
