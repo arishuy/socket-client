@@ -9,29 +9,10 @@ import Axios from "axios";
 const Content = () => {
   const reminders = useSelector((state) => state.reminder.reminders);
   const dispatch = useDispatch();
-  let topThree = [];
+  
   useEffect(() => {
     dispatch(getAllRemindersAsync());
   }, [dispatch]);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await Axios.get(
-        "https://localhost:5000/api/message/getTopThreeFriends",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      topThree = data.data.data;
-    }
-    fetchData();
-    // return () => {
-    //   // cleanup
-    //   setchatData({});
-    // }
-  });
-  console.log(topThree);
   
   const allReminders = reminders?.map((reminder) => {
     return (
@@ -46,7 +27,7 @@ const Content = () => {
         <h1>
           Ranking  <i className="fa-solid fa-ranking-star"></i></h1>
         <div className="rank__content">
-        <Topcard key="" name="Huy Bui" amount="200"/>
+          <Topcard />
         </div>
       </div>
       <div className="reminder1 col-half">
