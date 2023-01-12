@@ -29,12 +29,7 @@ const Sidebar = () => {
         <Link to="/Reminder">
           <i className="fa-solid fa-note-sticky"></i>
         </Link>
-      </button>
-      <button>
-        <Link to="/Groupchat">
-        <i className="fa-solid fa-handshake-simple"></i>
-        </Link>
-      </button>
+      </button>    
       <button className="b1">
         <a href="https://www.facebook.com/huy9819/">
           <i className="fa-sharp fa-solid fa-paper-plane about_us"></i>

@@ -33,7 +33,6 @@ export const getAllChatsAsync = createAsyncThunk(
         if (temp) {
           temp.latestMessage.content = action.payload.latestMessage;
           //temp.latestMessage.createdAt = action.payload.createdAt;
-          console.log(action.payload.createAt);
           temp.latestMessage.createAt = action.payload.createAt;
           state.chats.sort(function (a, b) {
             // Turn your strings into dates, and then subtract them
@@ -44,7 +43,6 @@ export const getAllChatsAsync = createAsyncThunk(
             );
           });
         }
-        console.log(state.chats);
       }
       
     },

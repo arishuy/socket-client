@@ -4,26 +4,33 @@ import Contactcard from "./Card/Contactcard";
 import Photo from "./Card/Photo";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
-import {timeSince} from "../utils/changeDate";
+import { timeSince } from "../utils/changeDate";
 import Newgroup from "./Newgroup";
-import { getUserByIdAsync } from "../redux/Slices/UserSlice";
+import Axios from "axios";
 
 const Contact = () => {
   const [chats, setChats] = React.useState([]);
-  const user = useSelector((state) => state.auth);
-  const userId = user[0].user._id;
-  const chatFromRedux = useSelector((state) => state.chats);
+  const username = useSelector((state) => state.auth[0].user.name);
   const socket = useSelector((state) => state.socket.socket);
+  const allChats = useSelector((state) => state.chats.chats);
   const dispatch = useDispatch();
-  const dispatchFriend = useDispatch();
   const [isDisplay, setIsDisplay] = React.useState(false);
+  const [people, setPeople] = React.useState([]);
   useEffect(() => {
-    dispatchFriend(getUserByIdAsync(userId)).then((res) => { 
-    });
-  }, [dispatchFriend]);
-  const handleDisplay = () => {
-    setIsDisplay(!isDisplay);
-  };
+    async function fetchData() {
+      const data = await Axios.get(
+        "https://chat-web-vz9a.onrender.com/api/user/friends",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      console.log(data.data.data.friends);
+      setPeople(data.data.data.friends);
+    }
+    fetchData();
+  }, [1]);
   useEffect(() => {
     dispatch(getAllChatsAsync()).then((res) => {
       setChats(res.payload.data.data.chats);
@@ -31,13 +38,13 @@ const Contact = () => {
   }, [dispatch]);
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      let temp = chats.find((chat) => { chat._id == data.chat });
+      let temp = chats.find((chat) => {
+        chat._id == data.chat;
+      });
       if (temp) {
         temp.latestMessage.content = data.content;
         temp.latestMessage.createAt = data.createdAt;
         chats.sort(function (a, b) {
-          // Turn your strings into dates, and then subtract them
-          // to get a value that is either negative, positive, or zero.
           return (
             new Date(b.latestMessage.createAt) -
             new Date(a.latestMessage.createAt)
@@ -45,21 +52,26 @@ const Contact = () => {
         });
         setChats([chats]);
       }
-
     });
   }, [socket]);
-  console.log(chats);
-  console.log(chatFromRedux)
-  const username = useSelector((state) => state.auth[0].user.name);
-  const allChats = useSelector((state) => state.chats.chats);
+
   const allChatsElement = allChats?.map((chat) => {
     return (
-      <Contactcard key={chat._id}
+      <Contactcard
+        key={chat._id}
         chatId={chat._id}
-        name={username===chat?.users[0].name?chat.users[1].name:chat.users[0].name}
+        name={
+          username === chat?.users[0].name
+            ? chat.users[1].name
+            : chat.users[0].name
+        }
         latestMessage={chat.latestMessage?.content}
         time={timeSince(new Date(chat.latestMessage?.createAt))}
-        avatar={username===chat.users[0].name?chat.users[1].pic:chat.users[0].pic}
+        avatar={
+          username === chat.users[0].name
+            ? chat.users[1].pic
+            : chat.users[0].pic
+        }
       />
     );
   });
@@ -68,19 +80,23 @@ const Contact = () => {
     return (
       <Photo
         photoId={chat._id}
-        src={username === chat.users[0].name ? chat.users[1].pic:chat.users[0].pic}
+        src={
+          username === chat.users[0].name
+            ? chat.users[1].pic
+            : chat.users[0].pic
+        }
       />
     );
-   });
-  
+  });
+  const handleDisplay = () => {
+    setIsDisplay(!isDisplay);
+  };
   return (
     <div className="contact-body">
       <div className="contact-content">
         <div className="contact-regular">
           <h1>Regular Contact</h1>
-          <div className="contact-avatar">
-            {TopFourFriendsElement}
-          </div>
+          <div className="contact-avatar">{TopFourFriendsElement}</div>
         </div>
         <div className="search">
           <div className="search-content">
@@ -90,10 +106,8 @@ const Contact = () => {
           <button onClick={handleDisplay}>Create Group</button>
         </div>
       </div>
-      <div className="contact-message">
-        {allChatsElement}
-      </div>
-      {isDisplay && <Newgroup />}
+      <div className="contact-message">{allChatsElement}</div>
+      {isDisplay && <Newgroup people={people} />}
     </div>
   );
 };
