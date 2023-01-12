@@ -5,12 +5,15 @@ import Topcard from "./Card/Topcard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllRemindersAsync } from "../redux/Slices/ReminderSlice";
+import Axios from "axios";
 const Content = () => {
   const reminders = useSelector((state) => state.reminder.reminders);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getAllRemindersAsync());
   }, [dispatch]);
+  
   const allReminders = reminders?.map((reminder) => {
     return (
       <div style={{ display: "flex" }}>
@@ -24,7 +27,7 @@ const Content = () => {
         <h1>
           Ranking  <i className="fa-solid fa-ranking-star"></i></h1>
         <div className="rank__content">
-        <Topcard key="" name="Huy Bui" amount="200"/>
+          <Topcard />
         </div>
       </div>
       <div className="reminder1 col-half">
