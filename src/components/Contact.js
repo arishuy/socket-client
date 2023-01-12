@@ -5,11 +5,16 @@ import Photo from "./Card/Photo";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllChatsAsync } from "../redux/Slices/ChatSlice";
 import {timeSince} from "../utils/changeDate";
+import Newgroup from "./Newgroup";
 const Contact = () => {
   const [chats, setChats] = React.useState([]);
   const chatFromRedux = useSelector((state) => state.chats);
   const socket = useSelector((state) => state.socket.socket);
   const dispatch = useDispatch();
+  const [isDisplay, setIsDisplay] = React.useState(false);
+  const handleDisplay = () => {
+    setIsDisplay(!isDisplay);
+  };
   useEffect(() => {
     dispatch(getAllChatsAsync()).then((res) => {
       setChats(res.payload.data.data.chats);
@@ -73,11 +78,13 @@ const Contact = () => {
             <i className="fa-solid fa-magnifying-glass"></i>
             <input type="search" placeholder="Enter a name"></input>
           </div>
+          <button onClick={handleDisplay}>Create Group</button>
         </div>
       </div>
       <div className="contact-message">
         {allChatsElement}
       </div>
+      {isDisplay && <Newgroup />}
     </div>
   );
 };
