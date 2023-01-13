@@ -10,6 +10,7 @@ import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
 import { useParams } from "react-router";
 import Contact from "./Contact";
 import { addLatestMessage } from "../redux/Slices/ChatSlice";
+import sound from "./sound.mp3";
 
 const Chatwindow = ({ user, socket, chatData }) => {
   const allMessages = useSelector((state) => state.message.messages);
@@ -18,11 +19,17 @@ const Chatwindow = ({ user, socket, chatData }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
   const dispatch1 = useDispatch();
+  const playSound = new Audio("sound.mp3");
   console.log("chatData", chatData);
   useEffect(() => {
     setMessageList(allMessages);
     socket.emit("inChat", chatId);
   }, [chatId]);
+  // sound effect when receive message
+  useEffect(() => {
+    new Audio(sound).play();
+  }, [messageList]);
+  // send message
   const sendMessage = async () => {
     //
     if (currentMessage !== "") {
