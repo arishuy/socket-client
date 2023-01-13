@@ -4,8 +4,6 @@ import Messcard from "./Card/Messcard";
 import { useSelector, useDispatch } from "react-redux";
 import { createNewMessageAsync } from "../redux/Slices/MessageSlice";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { getUserByIdAsync } from "../redux/Slices/UserSlice";
-import { useState } from "react";
 import { createNewNotificationAsync } from "../redux/Slices/NotificationSlice";
 import { useParams } from "react-router";
 import Contact from "./Contact";
@@ -19,15 +17,13 @@ const Chatwindow = ({ user, socket, chatData }) => {
   const [currentMessage, setCurrentMessage] = React.useState("");
   const [messageList, setMessageList] = React.useState(allMessages);
   const dispatch1 = useDispatch();
-  const playSound = new Audio("sound.mp3");
-  console.log("chatData", chatData);
   useEffect(() => {
     setMessageList(allMessages);
     socket.emit("inChat", chatId);
   }, [chatId]);
   // sound effect when receive message
   useEffect(() => {
-    new Audio(sound).play();
+    
   }, [messageList]);
   // send message
   const sendMessage = async () => {
@@ -56,6 +52,7 @@ const Chatwindow = ({ user, socket, chatData }) => {
   };
   useEffect(() => {
     socket.on("receive_message", (data) => {
+      new Audio(sound).play();
       if (data.chat === chatId) {
         setMessageList((list) => [...list, data]);
       }
