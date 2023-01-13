@@ -5,13 +5,11 @@ import { selectAuth } from "../redux/Slices/AuthSlice";
 import { useSelector} from "react-redux";
 
 const Message_ChatWindow = () => {
-  const allMessagesFromRedux = useSelector((state) => state.message);
-  const [allMessages, setAllMessages] = React.useState(allMessagesFromRedux);
   const auth = useSelector(selectAuth);
   return (
     <div>
       <Header />
-      <Body_chatwindow user={auth[0]} reloadMessages={allMessages} />
+      <Body_chatwindow user={auth[0]} />
     </div>
   );
 };

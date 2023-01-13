@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React  from "react";
+import { useDispatch} from "react-redux";
 import { getAllMessagesAsync } from "../../redux/Slices/MessageSlice";
 import { useNavigate } from "react-router"
+
+
 
 const Contactcard = ({chatId,name,latestMessage,time, avatar}) => {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ const Contactcard = ({chatId,name,latestMessage,time, avatar}) => {
       navigate("/Message_ChatWindow/" + chatId);
     });
   };
+
   return (
     <div className="message-content" onClick={handleClick}>
       <div className="contact-avatar kimochi">

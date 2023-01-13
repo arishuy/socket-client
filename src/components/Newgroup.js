@@ -7,7 +7,6 @@ const Newgroup = (props) => {
   const [user, setUser] = React.useState([]);
   const [isDisplay, setIsDisplay] = React.useState(true);
   const people = props.people;
-  console.log(user);
   const group = {
       chatName: name,
     users: user,
@@ -25,7 +24,7 @@ const friendElements = people.friends?.map((friend) => {
     };
     
     return (
-      <div
+      <div key={friend._id}
         style={{ display: "flex", alignItems: "center"  }}
         onClick={handleSelect}
       >
@@ -43,7 +42,6 @@ const friendElements = people.friends?.map((friend) => {
     };
   const handleDisplay = () => {
     setIsDisplay(false);
-    console.log(isDisplay);
   };
 
   return (
